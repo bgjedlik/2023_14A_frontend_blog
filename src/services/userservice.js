@@ -20,5 +20,15 @@ export default {
       .catch(err => {
         return Promise.reject(err.response);
       })
+  },
+  logout(token){
+    return Axios.post('/logout', '', {headers: {"Authorization" : "Bearer "+token}})
+      .then(resp => {
+        return resp;
+      })
+      .catch(err => {
+        return Promise.reject(err.response);
+      })
   }
+
 }

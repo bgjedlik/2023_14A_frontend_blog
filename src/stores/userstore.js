@@ -21,6 +21,8 @@ export const useUserStore = defineStore('userstore',{
                 .then(resp =>{
                     this.status.loggedIn = true;
                     this.user = resp.data.data;
+                    this.status.message = ''; //resp.data.message;
+                    sessionStorage.setItem('user',JSON.stringify(this.user))
                 })
                 .catch(err =>{
                     this.status.loggedIn = false;
@@ -29,5 +31,13 @@ export const useUserStore = defineStore('userstore',{
                     return Promise.reject(err.resposne);
                 })
         },
+        logout(){
+            return userservice.logout(this.user.token)
+                .then(()=>{
+                    this.status.loggedIn = false;
+                    this.user =  {name: '', token: '', id:null, role:null }
+                    sessionStorage.removeItem('user');
+                });
+        }
     } 
 });
