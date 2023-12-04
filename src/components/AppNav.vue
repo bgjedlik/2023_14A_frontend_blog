@@ -44,6 +44,16 @@ const menuItems = computed(() => {
       isLoggedIn: true
     },
     {
+      title: 'Blogok',
+      to: '/blogok',
+      isLoggedIn: true
+    },
+    {
+      title: 'Új blog',
+      to: '/ujblog',
+      isLoggedIn: status.value.loggedIn
+    },
+    {
       title: 'Bejelentkezés',
       to: '/bejelentkezes',
       isLoggedIn: !status.value.loggedIn
